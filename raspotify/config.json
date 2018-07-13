@@ -1,7 +1,7 @@
 {
     "name": "Raspotify",
     "version": "dev",
-    "slug": "example",
+    "slug": "raspotify",
     "description": "Raspotify by https://github.com/dtcooper/raspotify",
     "url": "https://github.com/enapupe/raspotify",
     "startup": "application",

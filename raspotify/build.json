@@ -1,9 +1,9 @@
 {
     "squash": false,
     "build_from": {
-        "aarch64": "hassioaddons/base-aarch64:2.0.0",
+        "aarch64": "arm64v8/debian/:debian",
         "amd64": "hassioaddons/base-amd64:2.0.0",
-        "armhf": "hassioaddons/base-armhf:2.0.0",
+        "armhf": "hassioaddons/pi-hole-armhf:2.0.0",
         "i386": "hassioaddons/base-i386:2.0.0"
     },
     "args": {}
