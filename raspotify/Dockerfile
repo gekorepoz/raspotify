@@ -1,13 +1,19 @@
-ARG BUILD_FROM=hassioaddons/base:2.0.0
+ARG BUILD_FROM=debian:jessie
 # hadolint ignore=DL3006
 FROM ${BUILD_FROM}
 
-# Setup base
-RUN apk add --no-cache \
-    coreutils=8.29-r2 \
-    wget=1.19.5-r0
+RUN apt-get update
+RUN apt-get install curl apt-transport-https gnupg2 ca-certificates -y --no-install-recommends
 
-RUN curl -sL https://dtcooper.github.io/raspotify/install.sh | sh
+ENV SOURCE_REPO="deb https://dtcooper.github.io/raspotify jessie main"
+
+ENV APT_KEY_DONT_WARN_ON_DANGEROUS_USAGE=true
+RUN curl -sSL https://dtcooper.github.io/raspotify/key.asc | apt-key add -v -
+
+RUN echo "$SOURCE_REPO" | tee /etc/apt/sources.list.d/raspotify.list
+
+RUN apt-get update
+RUN apt-get -y install raspotify
 
 # Build arugments
 ARG BUILD_ARCH
