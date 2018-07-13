@@ -2,6 +2,19 @@ ARG BUILD_FROM=debian:jessie
 # hadolint ignore=DL3006
 FROM ${BUILD_FROM}
 
+# Environment variables
+ENV \
+    DEBIAN_FRONTEND="noninteractive" \
+    HOME="/root" \
+    LANG="C.UTF-8" \
+    PS1="$(whoami)@$(hostname):$(pwd)$ " \
+    S6_BEHAVIOUR_IF_STAGE2_FAILS=2 \
+    S6_CMD_WAIT_FOR_SERVICES=1 \
+    TERM="xterm"
+
+
+ARG BUILD_ARCH=amd64
+
 RUN apt-get update
 RUN apt-get install curl apt-transport-https gnupg2 ca-certificates -y --no-install-recommends
 
